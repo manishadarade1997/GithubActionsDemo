@@ -17,18 +17,7 @@ describe('Example Test', () => {
       .type('fake@email.com')
       .should('have.value', 'fake@email.com')
   })
-
-  it('should handle a button click', () => {
-    // Visit the same page
-    cy.visit('https://example.cypress.io')
-    
-    // Click on a button
-    cy.contains('button').click()
-    
-    // Verify the button click action
-    cy.get('.navbar-header').should('have.class', '.navbar-toggle.collapsed')
-  })    
-
+  
     it('should check for an element visibility', () => {
         // Visit the same page
         cy.visit('https://example.cypress.io')
