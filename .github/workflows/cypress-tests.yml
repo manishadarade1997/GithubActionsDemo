@@ -5,22 +5,42 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm install
-        
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headless: true
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy
+        run: echo "Simulating deployment... No environment configured."
